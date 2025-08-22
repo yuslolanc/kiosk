@@ -3,24 +3,35 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>Masjid al Noor — Monthly Events</title>
+  <title>Masjid al Noor — Monthly Events (Clean)</title>
   <style>
     html, body { margin:0; height:100%; background:#000; overflow:hidden; }
-    /* Slight oversize + negative top to crop bottom controls */
-    iframe {
-      position:fixed; left:0; top:-12px;
-      width:100vw; height:calc(100vh + 24px);
+    /* Oversize the iframe slightly and nudge up to crop any bottom UI inside the frame */
+    .stage {
+      position:fixed; inset:0; overflow:hidden; background:#000;
+    }
+    .stage iframe {
+      position:absolute; left:0; top:-14px; /* crop ~14px from top/bottom area */
+      width:100vw; height:calc(100vh + 28px);
       border:0; display:block;
+    }
+    /* Absolute bottom mask to hide any remaining control strip */
+    .mask-bottom {
+      position:fixed; left:0; right:0; bottom:0;
+      height:48px; background:#000; z-index:5; pointer-events:none;
     }
   </style>
 </head>
 <body>
-  <iframe
-    src="https://docs.google.com/presentation/d/e/2PACX-1vSVbXh_fKsfDF1XiUokWthOFrFvedW4jXnwwLQny4BoSzPTJBA2vP3CxyvznBjtfz3DjBSNGnDmTcS_/pubembed?start=true&loop=true&delayms=15000"
-    allow="autoplay; fullscreen"
-    allowfullscreen
-    mozallowfullscreen
-    webkitallowfullscreen>
-  </iframe>
+  <div class="stage">
+    <iframe
+      src="https://docs.google.com/presentation/d/e/2PACX-1vSVbXh_fKsfDF1XiUokWthOFrFvedW4jXnwwLQny4BoSzPTJBA2vP3CxyvznBjtfz3DjBSNGnDmTcS_/embed?start=true&loop=true&delayms=15000"
+      allow="autoplay; fullscreen"
+      allowfullscreen
+      mozallowfullscreen
+      webkitallowfullscreen>
+    </iframe>
+  </div>
+  <div class="mask-bottom"></div>
 </body>
 </html>
